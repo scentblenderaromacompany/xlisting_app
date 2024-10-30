@@ -1,0 +1,49 @@
+# General Development
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+
+# TensorFlow and Keras for Machine Learning
+tensorflow
+keras
+
+# Image Processing
+Pillow
+opencv-python
+
+# PostgreSQL Database Connection
+psycopg2-binary
+SQLAlchemy
+
+# Web Scraping
+beautifulsoup4
+requests
+
+# API Integration
+fastapi
+uvicorn
+
+# Orchestration
+apache-airflow
+prefect
+
+# NLP for Text Embedding
+transformers
+torch
+
+# Utilities
+pyyaml
+loguru
+pytest
+
+# MLflow for Model Tracking
+mlflow
+
+# Docker and Kubernetes (Optional)
+docker
+kubernetes
+
+# Additional Dependencies
+tqdm

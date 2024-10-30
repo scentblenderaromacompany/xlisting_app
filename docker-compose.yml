@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13
+    container_name: xlisting_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 8040
+      POSTGRES_DB: jewelry_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_web
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:8040@db:5432/jewelry_db
+      CONFIG_PATH: /app/config/config.yaml
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:8040@db:5432/jewelry_db
+    ports:
+      - "8000:8000"
+      - "8080:8080" # Airflow Webserver
+      - "5000:5000" # MLflow
+    volumes:
+      - .:/app
+    command: sh -c "uvicorn src.api_integration:app --host 0.0.0.0 --port 8000 & airflow scheduler & airflow webserver & mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlflow/mlruns --host 0.0.0.0 --port 5000"
+
+volumes:
+  postgres_data:
+  mlruns:

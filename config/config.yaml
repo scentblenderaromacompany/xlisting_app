@@ -1,0 +1,14 @@
+database:
+  url: postgres://postgres:8040@db:5432/jewelry_db
+
+api_keys:
+  ebay: your_ebay_api_key
+  shopify: your_shopify_api_key
+  etsy: your_etsy_api_key
+
+mlflow:
+  tracking_uri: http://localhost:5000
+
+logging:
+  level: INFO
+  file: logs/app.log
